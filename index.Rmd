@@ -1,0 +1,19 @@
+---
+title: "My Homepage"
+---
+## R Markdown
+I am Boris. Currently, student of the master program in statistics at the University of Bern in Switzerland. I got a bachelor´s degree in mathematical engineering at the National Polytechnic School in Ecuador.
+I am so interested in actuarial mathematics, applied statistics and R programing.
+
+In this blog, I am going to upload information related to my interest in order to share my knowledge. If you have questions about my work, please contact me.¡¡
+
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

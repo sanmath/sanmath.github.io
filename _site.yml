@@ -1,0 +1,17 @@
+name: "Boris Polanco"
+output_dir: "."
+navbar:
+  title: "My Website"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "About"
+      href: about.html
+right:
+    - text: "Contact me"
+      icon: fa-envelope-o
+      href: mailto:boriscout@hotmail.com
+output:
+  html_document:
+    theme: cosmo
+    highlight: textmate
