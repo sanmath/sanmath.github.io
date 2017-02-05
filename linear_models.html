@@ -11,7 +11,7 @@
 
 
 
-<title>linear_models</title>
+<title>Linear Models and Regression</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -181,6 +181,9 @@ $(document).ready(function () {
 <li>
   <a href="about.html">About</a>
 </li>
+<li>
+  <a href="linear_models.html">Linear Models</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -193,29 +196,71 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">linear_models</h1>
+<h1 class="title toc-ignore">Linear Models and Regression</h1>
 
 </div>
 
 
-<div id="r-markdown" class="section level2">
-<h2>R Markdown</h2>
-<p>This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com" class="uri">http://rmarkdown.rstudio.com</a>.</p>
-<p>When you click the <strong>Knit</strong> button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:</p>
-<pre class="r"><code>summary(cars)</code></pre>
-<pre><code>##      speed           dist       
-##  Min.   : 4.0   Min.   :  2.00  
-##  1st Qu.:12.0   1st Qu.: 26.00  
-##  Median :15.0   Median : 36.00  
-##  Mean   :15.4   Mean   : 42.98  
-##  3rd Qu.:19.0   3rd Qu.: 56.00  
-##  Max.   :25.0   Max.   :120.00</code></pre>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>We consider a pair of random variables <span class="math inline">\((X,Y)\)</span>, we seek understanding relationships between the two variables and predicting <span class="math inline">\(Y\)</span> from <span class="math inline">\(X\)</span></p>
+<p>A regression is a relation of the kind: <span class="math display">\[Y=f(X)+\epsilon\]</span> The function <span class="math inline">\(f\)</span> is the unknown “regression” function.</p>
+<p><span class="math inline">\(\epsilon\)</span> is the random error, with <span class="math inline">\(E(\epsilon)=0\)</span></p>
+<p><span class="math inline">\(X\)</span> is a random variable. ## Examples of Linear Models 1. One way Analysis of Variance 2.- Simple Linear Regression 3.- Polynomial Regression 4.- Simple Analysis of Covariance 5.- Multiple Linear Regression</p>
 </div>
-<div id="including-plots" class="section level2">
-<h2>Including Plots</h2>
-<p>You can also embed plots, for example:</p>
-<p><img src="linear_models_files/figure-html/pressure-1.png" width="672" /></p>
-<p>Note that the <code>echo = FALSE</code> parameter was added to the code chunk to prevent printing of the R code that generated the plot.</p>
+<div id="parameter-estimation" class="section level2">
+<h2>Parameter Estimation</h2>
+<p>It consist in estimate <span class="math inline">\(f\)</span> and also the standard deviation <span class="math inline">\(\sigma\)</span> of the error <span class="math inline">\(\epsilon=Y-f(X)\)</span>.We consider <span class="math inline">\(n\)</span> data pairs: (<span class="math inline">\(X_1,Y_1\)</span>),(<span class="math inline">\(X_2,Y_2\)</span>),…,(<span class="math inline">\(X_n,Y_n\)</span>) <span class="math display">\[Y_i=f(X_i)+\epsilon_i\]</span> <span class="math inline">\(\forall i=1,..,n\)</span> <span class="math inline">\(E(\epsilon_i)=0\)</span> <span class="math inline">\(Var(\epsilon_i=\sigma^2)\)</span></p>
+</div>
+<div id="vector-and-matrix-representations" class="section level2">
+<h2>Vector and Matrix Representations</h2>
+We have
+<span class="math display">\[\begin{align}
+    y &amp;= \begin{bmatrix}
+           y_{1} \\
+           y_{2} \\
+           \vdots \\
+           y_{n}
+         \end{bmatrix}
+         \in \mathbb{R^n}
+  \end{align}\]</span>
+<span class="math display">\[\begin{align}
+    \epsilon &amp;= \begin{bmatrix}
+           \epsilon_{1} \\
+           \epsilon_{2} \\
+           \vdots \\
+           \epsilon_{n}
+         \end{bmatrix}
+         \in \mathbb{R^n}
+  \end{align}\]</span>
+<p>We denote basis functions <span class="math inline">\(f_1,f_2,...,f_p\)</span> that can be writen as: <span class="math display">\[f(x)=\displaystyle\sum_{j=1}^{p}\theta_jf_j(x)\]</span></p>
+The vector of parameters
+<span class="math display">\[\begin{align}
+    \theta &amp;= \begin{bmatrix}
+           \theta_{1} \\
+           \theta_{2} \\
+           \vdots \\
+           \theta_{p}
+         \end{bmatrix}
+         \in \mathbb{R^p}
+  \end{align}\]</span>
+The Design Matrix: D=
+<span class="math display">\[\begin{bmatrix}
+    f_1(X_1) &amp; f_2(X_1) &amp;  \dots  &amp; f_p{X_1} \\
+    f_1(X_2) &amp; f_2(X_2) &amp;  \dots  &amp; f_p{X_2}\\
+    \vdots &amp; \vdots &amp; \vdots &amp; \ddots  \\
+    f_1(X_n) &amp; f_2(X_n) &amp;  \dots  &amp; f_p{X_n}
+\end{bmatrix}\]</span>
+<p>Therefore our model can be written as follows: <span class="math display">\[Y=D\Theta+\epsilon\]</span></p>
+</div>
+<div id="estimation-of-theta" class="section level2">
+<h2>Estimation of <span class="math inline">\(\Theta\)</span></h2>
+<p>We assume that <span class="math inline">\(D\)</span> has full column rank, it means that <span class="math inline">\(rank(D)=p\leq n\)</span>. In other words it means that the columns of <span class="math inline">\(D\)</span> are li. i.e for <span class="math inline">\(\eta\in\mathbb{R^p}-\{0\}\)</span> <span class="math inline">\(D\eta\neq 0\)</span>, that is <span class="math inline">\(0&lt;||D\eta||^2=\eta^2D^TD\eta\)</span>. Therefore <span class="math inline">\(D^TD\)</span> is positive definite</p>
+</div>
+<div id="least-square-estimation" class="section level2">
+<h2>Least Square Estimation</h2>
+<p>A vector <span class="math inline">\(\hat{\theta}\in\mathbb{R^p}\)</span> is called a LEast Square Estimator of <span class="math inline">\(\theta\)</span> when: <span class="math display">\[||Y-D\hat{\theta}||^2=\displaystyle{ min_{\eta\in\mathbb{R^p}}}||Y-D\eta||^2\]</span></p>
+<p>An estimator of <span class="math inline">\(\theta\)</span> is given by: <span class="math display">\[\hat{\theta}=(D^TD)^{-1}D^TY\]</span></p>
 </div>
 
 
