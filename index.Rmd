@@ -5,7 +5,7 @@ title: "My Homepage"
 I am Boris. Currently, student of the master program in statistics at the University of Bern in Switzerland. I got a bachelor´s degree in mathematical engineering at the National Polytechnic School in Ecuador.
 I am so interested in actuarial mathematics, applied statistics and R programing.
 
-In this blog, I am going to upload information related to my interest in order to share my knowledge. If you have questions about my work, please contact me.¡¡
+In this blog, I am going to upload information related to my interests in order to share my knowledge. If you have questions about my work, please contact me.¡¡
 
 
 ## Including Plots
@@ -13,6 +13,7 @@ In this blog, I am going to upload information related to my interest in order t
 You can also embed plots, for example:
 
 ```{r pressure, echo=FALSE}
+library(faraway)
 plot(pressure)
 ```
 
