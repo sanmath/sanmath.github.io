@@ -9,6 +9,8 @@ navbar:
       href: about.html
     - text: "Linear Models"
       href: linear_models.html
+    - text: "Mapas"
+      href: mapas.html  
 right:
     - text: "Contact me"
       icon: fa-envelope-o

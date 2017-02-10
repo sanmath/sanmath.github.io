@@ -1,0 +1,26 @@
+---
+title: "Mapas"
+author: "Boris Polanco"
+date: "10 de febrero de 2017"
+output: html_document
+---
+
+## R Markdown
+
+
+```{r cars, echo=FALSE}
+library(maptools)
+crswgs84=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs")
+provincias<-readShapePoly("C:/Users/lenovo/Desktop/Msc.Statistics/Blog/sanmath.github.io/SHP/nxprovincias.shp")
+plot(provincias)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
