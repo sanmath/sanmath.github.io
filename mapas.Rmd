@@ -1,8 +1,6 @@
 ---
 title: "Mapas"
-author: "Boris Polanco"
-date: "10 de febrero de 2017"
-output: html_document
+
 ---
 
 ## R Markdown
@@ -22,7 +20,7 @@ plot(provincias,col="red")
 You can also embed plots, for example:
 
 ```{r pressure, echo=FALSE}
-plot(pressure)
+plot(pressure,main="grafico")
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
