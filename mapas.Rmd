@@ -14,7 +14,7 @@ library(RColorBrewer)
 my.palette1 <- brewer.pal(n = 12, name = "Set3")
 crswgs84=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs")
 provincias<-readShapePoly("C:/Users/lenovo/Desktop/Msc.Statistics/Blog/sanmath.github.io/SHP/nxprovincias.shp")
-plot(provincias,col=my.palette1)
+plot(provincias,col="red")
 ```
 
 ## Including Plots
