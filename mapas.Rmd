@@ -8,7 +8,7 @@ output: html_document
 ## R Markdown
 
 
-```{r cars, echo=FALSE}
+```{r cars, message=FALSE}
 library(maptools)
 library(RColorBrewer)
 my.palette1 <- brewer.pal(n = 12, name = "Set3")
