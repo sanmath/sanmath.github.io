@@ -5,7 +5,7 @@ navbar:
   left:
     - text: "Home"
       href: index.html
-    - text: "About"
+    - text: "CV"
       href: about.html
     - text: "Linear Models"
       href: linear_models.html
