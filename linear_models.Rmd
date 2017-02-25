@@ -89,3 +89,4 @@ $$||Y-D\hat{\theta}||^2=\displaystyle{ min_{\eta\in\mathbb{R^p}}}||Y-D\eta||^2$$
 An estimator of $\theta$ is given by:
 $$\hat{\theta}=(D^TD)^{-1}D^TY$$
 
+\includegraphics[width=0.5]{Slides.pdf}
