@@ -6,7 +6,7 @@ title: "Linear Models and Regression"
 
 
 ## Introduction
-<a href="C:/Users/lenovo/Desktop/Msc.Statistics/Blog/sanmath.github.io/print.pdf">document</a>
+<a href="print.pdf">pdf file</a>
 
 We consider a pair of random variables $(X,Y)$, we seek understanding relationships between the two variables and predicting $Y$ from $X$
 
