@@ -5,7 +5,8 @@ title: "My Homepage"
 
 ## R Markdown
 ![](C:/Users/lenovo/Desktop/Msc.Statistics/Blog/sanmath.github.io/foto1.jpg)
-I am Boris. Currently, student of the master program in statistics at the University of Bern in Switzerland. I got a bachelor´s degree in mathematical engineering at the National Polytechnic School in Ecuador.
+
+I am Boris Polanco. Currently, student of the master program in statistics at the University of Bern in Switzerland. I got a bachelor´s degree in mathematical engineering at the National Polytechnic School in Ecuador.
 I am so interested in actuarial mathematics, applied statistics and R programing.
 
 In this blog, I am going to upload information related to my interests in order to share my knowledge. If you have questions about my work, please contact me.¡¡
