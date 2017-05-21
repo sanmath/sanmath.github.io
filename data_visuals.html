@@ -11,7 +11,7 @@
 
 
 
-<title>My Homepage</title>
+<title>Data Visualizations</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -193,18 +193,26 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">My Homepage</h1>
+<h1 class="title toc-ignore">Data Visualizations</h1>
 
 </div>
 
 
-<div id="r-markdown" class="section level2">
-<h2>R Markdown</h2>
-<div class="figure">
-<img src="foto1.jpg" />
-
+<div id="the-first-plot" class="section level2">
+<h2>The first plot</h2>
 </div>
-<p>I am Boris Polanco, I am from Ecuador. I am 28 years old. Currently, I am studying a master program in statistics at the University of Bern in Switzerland. I got a degree in mathematical engineering at Escuela Politécnica Nacional in Quito Ecuador. In have created this website to publish some topics about my professional interest as statistics, actuarial mathematics, R programming, data visualization, also I want to share some of the knowledge that I have been adquiring during my short experience, as a student and in my job. If you have questions about my work, or everything related to me, do not hesitate in contact me.</p>
+<div id="plot-of-my-country" class="section level2">
+<h2>Plot of my country</h2>
+<p>Some time ago, I was interested in maps using R. Ifound some information with some libraries that can be used, the idea is to understand that we need to plot coordinates in a plot. In this small example I plot the map of Ecuador.</p>
+<pre class="r"><code>library(maptools)
+library(RColorBrewer)
+my.palette1 &lt;- brewer.pal(n = 12, name = &quot;Set3&quot;)
+crswgs84=CRS(&quot;+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs&quot;)
+provincias&lt;-readShapePoly(&quot;C:/Users/lenovo/Desktop/Msc.Statistics/Blog/sanmath.github.io/SHP/nxprovincias.shp&quot;)</code></pre>
+<pre><code>## Warning: use rgdal::readOGR or sf::st_read</code></pre>
+<pre class="r"><code>plot(provincias,col=my.palette1)</code></pre>
+<p><img src="data_visuals_files/figure-html/cars-1.png" width="672" /></p>
+<p>I found the coordinates in the website of the National Institute of Statistics and Census Bureau INEC.</p>
 </div>
 
 

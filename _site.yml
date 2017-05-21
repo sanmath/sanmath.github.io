@@ -5,12 +5,8 @@ navbar:
   left:
     - text: "Home"
       href: index.html
-    - text: "CV"
-      href: about.html
-    - text: "Linear Models"
-      href: linear_models.html
-    - text: "Mapas"
-      href: mapas.html
+    - text: "Data Visualization"
+      href: data_visuals.html
 right:
     - text: "Contact me"
       icon: fa-envelope-o
