@@ -7,7 +7,7 @@ title: "Data Visualizations"
 
 
 ## Plot of my country
-Some time ago, I was interested in maps using R. Ifound some information with some libraries that can be used, the idea is to understand that we need to plot coordinates in a plot. In this small example I plot the map of Ecuador.
+Some time ago, I was interested in maps using R. Ifound some information with some libraries that can be used, the idea is to understand that we need to plot coordinates in a plot. In this small example I plot the map of Ecuador
 
 ```{r cars, message=FALSE}
 library(maptools)
