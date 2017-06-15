@@ -12,4 +12,4 @@ I am Boris Polanco, I am from Ecuador. I am 28 years old.  Currently, I am study
 In have created this website to publish some topics about my professional interest as statistics, actuarial mathematics, R programming, data visualization, also I want to share some of the knowledge that I have been adquiring during my short experience, as a student and in my job. If you have questions about my work, or everything related to me, do not hesitate in contact me.
 
 ## My CV
-<a href="cv.pdf">My Curriculum Vitae</a>
+<a href="cv_7.pdf">My Curriculum Vitae</a>
