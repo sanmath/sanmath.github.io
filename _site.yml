@@ -7,6 +7,8 @@ navbar:
       href: index.html
     - text: "Data Visualization"
       href: data_visuals.html
+    - text: "Statistics"
+      href: various.html  
 right:
     - text: "Contact me"
       icon: fa-envelope-o

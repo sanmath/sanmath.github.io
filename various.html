@@ -11,7 +11,7 @@
 
 
 
-<title></title>
+<title>Various about statistics and insurance</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -196,13 +196,18 @@ $(document).ready(function () {
 
 
 
+<h1 class="title toc-ignore">Various about statistics and insurance</h1>
 
 </div>
 
 
-<div id="sanmath.github.io" class="section level1">
-<h1>sanmath.github.io</h1>
-<p>my website</p>
+<div id="the-compound-process" class="section level2">
+<h2>The Compound Process</h2>
+Is a random sum where the upper summation index is a counting process. In general we have that: <span class="math display">\[Z_t=\sum_{j=0}^{N_t}X_j\]</span> It is called the total loss or the total claim amount. Is easy to prove that the moment generating function of <span class="math inline">\(Z_t\)</span> is given by <span class="math display">\[M_{Z_t}(v)=M_{N_t}(log(M_X(v)))\]</span> In addition to that, we know the next property of the moment generating function: <span class="math display">\[E(X^k)=M^{(k)}(0)\]</span> Using this fact, we can get the expected value for the total loss or total calim amount.
+<span class="math display">\[\begin{align*}
+E(Z_t)&amp;=M&#39;_{N_t}(log(M_X(0)))\times\frac{M&#39;_X(0)}{M_X(0)}\\
+E(Z_t)&amp;=E(N_t)E(X_1)
+\end{align*}\]</span>
 </div>
 
 

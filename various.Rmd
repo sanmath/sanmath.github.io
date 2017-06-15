@@ -1,0 +1,20 @@
+---
+title: "Various about statistics and insurance"
+
+---
+
+
+
+## The Compound Process
+Is a random sum where the upper summation index is a counting process.
+In general we have that:
+$$Z_t=\sum_{j=0}^{N_t}X_j$$
+It is called the total loss or the total claim amount.
+Is easy to prove that the moment generating function of $Z_t$ is given by $$M_{Z_t}(v)=M_{N_t}(log(M_X(v)))$$
+In addition to that, we know the next property of the moment generating function:
+$$E(X^k)=M^{(k)}(0)$$
+Using this fact, we can get the expected value for the total loss or total calim amount.
+\begin{align*}
+E(Z_t)&=M'_{N_t}(log(M_X(0)))\times\frac{M'_X(0)}{M_X(0)}\\
+E(Z_t)&=E(N_t)E(X_1)
+\end{align*}
