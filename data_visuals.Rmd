@@ -33,7 +33,7 @@ mycols <- colors()[round(runif(25,100,130))]
 mycols<-heat.colors(25)
 mycols[c(6,8,25)]<-"tomato4"
 
-plot(cantones,col=mycols,main="Switzerland - Temperature in the Summer")
+plot(cantones,col=mycols,main="Switzerland Temperature in the Summer")
 grid()
 zh<-getCurrentTemperature("LSZH")[,c(2)]
 br<-getCurrentTemperature("LSZB")[,c(2)]
