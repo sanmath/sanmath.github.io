@@ -203,7 +203,7 @@ $(document).ready(function () {
 </div>
 <div id="plot-of-my-country" class="section level2">
 <h2>Plot of my country</h2>
-<p>Some time ago, I was interested in maps using R. Ifound some information with some libraries that can be used, the idea is to understand that we need to plot coordinates in a plot. In this small example I plot the map of Ecuador</p>
+<p>Some time ago, I was interested in maps using R. I found some information with some libraries that can be used. The idea is to understand that we need to plot coordinates in a plot. In this small example I plot the map of Ecuador</p>
 <pre class="r"><code>library(maptools)
 library(RColorBrewer)
 my.palette1 &lt;- brewer.pal(n = 12, name = &quot;Set3&quot;)
@@ -211,8 +211,32 @@ crswgs84=CRS(&quot;+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs&quot;)
 provincias&lt;-readShapePoly(&quot;C:/Users/lenovo/Desktop/Msc.Statistics/Blog/sanmath.github.io/SHP/nxprovincias.shp&quot;)</code></pre>
 <pre><code>## Warning: use rgdal::readOGR or sf::st_read</code></pre>
 <pre class="r"><code>plot(provincias,col=my.palette1)</code></pre>
-<p><img src="data_visuals_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-<p>I found the coordinates in the website of the National Institute of Statistics and Census Bureau INEC.</p>
+<p><img src="data_visuals_files/figure-html/unnamed-chunk-1-1.png" width="672" /> Is the summer in Switzerland, we can see the temperature in the most important cities here. Bern, Geneva and Zúrich. Finally , we can include the information and show in a map.</p>
+<pre class="r"><code>library(weatherData)</code></pre>
+<pre><code>## Warning: package &#39;weatherData&#39; was built under R version 3.3.3</code></pre>
+<pre class="r"><code>library(sp)
+library(maptools)
+library(RColorBrewer)
+
+crswgs84=CRS(&quot;+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs&quot;)
+cantones&lt;-readShapePoly(&quot;C:/Users/lenovo/Desktop/Msc.Statistics/Blog/sanmath.github.io/SHP/CHE_adm1.shp&quot;)</code></pre>
+<pre><code>## Warning: use rgdal::readOGR or sf::st_read</code></pre>
+<pre class="r"><code>mycols &lt;- colors()[round(runif(25,100,130))]
+mycols&lt;-heat.colors(25)
+mycols[c(6,8,25)]&lt;-&quot;tomato4&quot;
+
+plot(cantones,col=mycols,main=&quot;Switzerland Temperature Summer&quot;)
+
+zh&lt;-getCurrentTemperature(&quot;LSZH&quot;)[,c(2)]
+br&lt;-getCurrentTemperature(&quot;LSZB&quot;)[,c(2)]
+gnv&lt;-getCurrentTemperature(&quot;LSGG&quot;)[,c(2)]
+
+
+text(coordinates(cantones)[c(6,8,25),],
+     labels = c(paste(&quot;Bern&quot;,br,&quot;°&quot;),
+                paste(&quot;Geneva&quot;,gnv,&quot;°&quot;),
+                paste(&quot;Zúrich&quot;,zh,&quot;°&quot;)),cex = 0.8)</code></pre>
+<p><img src="data_visuals_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 </div>
 
 

@@ -7,7 +7,7 @@ title: "Data Visualizations"
 
 
 ## Plot of my country
-Some time ago, I was interested in maps using R. Ifound some information with some libraries that can be used, the idea is to understand that we need to plot coordinates in a plot. In this small example I plot the map of Ecuador
+Some time ago, I was interested in maps using R. I found some information with some libraries that can be used. The idea is to understand that we need to plot coordinates in a plot. In this small example I plot the map of Ecuador
 
 ```{r , message=FALSE}
 library(maptools)
@@ -17,6 +17,32 @@ crswgs84=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs")
 provincias<-readShapePoly("C:/Users/lenovo/Desktop/Msc.Statistics/Blog/sanmath.github.io/SHP/nxprovincias.shp")
 plot(provincias,col=my.palette1)
 ```
+Is the summer in Switzerland, we can see the temperature in the most important cities here. Bern, Geneva and Zúrich. Finally , we can include the information and show in a map.
 
- I found the coordinates in the website of the National Institute of Statistics and Census Bureau INEC. 
+```{r , message=FALSE}
+library(weatherData)
+library(sp)
+library(maptools)
+library(RColorBrewer)
+
+crswgs84=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs")
+cantones<-readShapePoly("C:/Users/lenovo/Desktop/Msc.Statistics/Blog/sanmath.github.io/SHP/CHE_adm1.shp")
+
+mycols <- colors()[round(runif(25,100,130))]
+mycols<-heat.colors(25)
+mycols[c(6,8,25)]<-"tomato4"
+
+plot(cantones,col=mycols,main="Switzerland Temperature Summer")
+
+zh<-getCurrentTemperature("LSZH")[,c(2)]
+br<-getCurrentTemperature("LSZB")[,c(2)]
+gnv<-getCurrentTemperature("LSGG")[,c(2)]
+
+
+text(coordinates(cantones)[c(6,8,25),],
+     labels = c(paste("Bern",br,"°"),
+                paste("Geneva",gnv,"°"),
+                paste("Zúrich",zh,"°")),cex = 0.8)
+
+```
 

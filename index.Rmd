@@ -3,7 +3,7 @@ title: "My Homepage"
 ---
 
 
-## R Markdown
+## Boris Polanco
 ![](C:/Users/lenovo/Desktop/Msc.Statistics/Blog/sanmath.github.io/foto1.jpg)
 \\
 
