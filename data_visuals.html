@@ -198,9 +198,6 @@ $(document).ready(function () {
 </div>
 
 
-<div id="the-first-plot" class="section level2">
-<h2>The first plot</h2>
-</div>
 <div id="plot-of-my-country" class="section level2">
 <h2>Plot of my country</h2>
 <p>Some time ago, I was interested in maps using R. I found some information with some libraries that can be used. The idea is to understand that we need to plot coordinates in a plot. In this small example I plot the map of Ecuador</p>
@@ -208,35 +205,73 @@ $(document).ready(function () {
 library(RColorBrewer)
 my.palette1 &lt;- brewer.pal(n = 12, name = &quot;Set3&quot;)
 crswgs84=CRS(&quot;+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs&quot;)
-provincias&lt;-readShapePoly(&quot;C:/Users/lenovo/Desktop/Msc.Statistics/Blog/sanmath.github.io/SHP/nxprovincias.shp&quot;)</code></pre>
-<pre><code>## Warning: use rgdal::readOGR or sf::st_read</code></pre>
-<pre class="r"><code>plot(provincias,col=my.palette1)</code></pre>
-<p><img src="data_visuals_files/figure-html/unnamed-chunk-1-1.png" width="672" /> Is the summer in Switzerland, we can see the temperature in the most important cities here. Bern, Geneva and Zúrich. Finally , we can include the information and show in a map.</p>
-<pre class="r"><code>library(weatherData)</code></pre>
-<pre><code>## Warning: package &#39;weatherData&#39; was built under R version 3.3.3</code></pre>
-<pre class="r"><code>library(sp)
+provincias&lt;-readShapePoly(&quot;C:/Users/lenovo/Desktop/Msc.Statistics/Blog/sanmath.github.io/SHP/nxprovincias.shp&quot;)
+plot(provincias,col=my.palette1,main=&quot;Ecuador&quot;)
+grid()</code></pre>
+<p><img src="data_visuals_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+</div>
+<div id="swiss-temperature-in-the-summer" class="section level2">
+<h2>Swiss Temperature in the Summer</h2>
+<p>Is the summer in Switzerland, we can see the temperature in the most important cities. Finally , we can include the information and show it in a map.</p>
+<pre class="r"><code>library(weatherData)
+library(sp)
 library(maptools)
 library(RColorBrewer)
 
 crswgs84=CRS(&quot;+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs&quot;)
-cantones&lt;-readShapePoly(&quot;C:/Users/lenovo/Desktop/Msc.Statistics/Blog/sanmath.github.io/SHP/CHE_adm1.shp&quot;)</code></pre>
-<pre><code>## Warning: use rgdal::readOGR or sf::st_read</code></pre>
-<pre class="r"><code>mycols &lt;- colors()[round(runif(25,100,130))]
+cantones&lt;-readShapePoly(&quot;C:/Users/lenovo/Desktop/Msc.Statistics/Blog/sanmath.github.io/SHP/CHE_adm1.shp&quot;)
+
+mycols &lt;- colors()[round(runif(25,100,130))]
 mycols&lt;-heat.colors(25)
 mycols[c(6,8,25)]&lt;-&quot;tomato4&quot;
 
-plot(cantones,col=mycols,main=&quot;Switzerland Temperature Summer&quot;)
-
+plot(cantones,col=mycols,main=&quot;Switzerland - Temperature in the Summer&quot;)
+grid()
 zh&lt;-getCurrentTemperature(&quot;LSZH&quot;)[,c(2)]
 br&lt;-getCurrentTemperature(&quot;LSZB&quot;)[,c(2)]
 gnv&lt;-getCurrentTemperature(&quot;LSGG&quot;)[,c(2)]
-
 
 text(coordinates(cantones)[c(6,8,25),],
      labels = c(paste(&quot;Bern&quot;,br,&quot;°&quot;),
                 paste(&quot;Geneva&quot;,gnv,&quot;°&quot;),
                 paste(&quot;Zúrich&quot;,zh,&quot;°&quot;)),cex = 0.8)</code></pre>
 <p><img src="data_visuals_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+</div>
+<div id="population-pyramids" class="section level2">
+<h2>Population Pyramids</h2>
+<pre class="r"><code>library(foreign)
+library(readxl)
+library(pyramid)
+
+
+a&lt;-read_excel(path =&quot;proyecciones_poblacion.xlsx&quot;,sheet = 1 )
+menor_de_20&lt;-vector(mode =&quot;numeric&quot;,length=17)
+entre_20_39_&lt;-vector(mode =&quot;numeric&quot;,length=17)
+entre_40_59_&lt;-vector(mode =&quot;numeric&quot;,length=17)
+mayor_60&lt;-vector(mode =&quot;numeric&quot;,length=17)
+for(i in c(2:22)){
+  menor_de_20[i-1]&lt;-sum(as.numeric(a[1:4,i]))
+  entre_20_39_[i-1]&lt;-sum(as.numeric(a[5:8,i]))
+  entre_40_59_[i-1]&lt;-sum(as.numeric(a[9:12,i]))
+  mayor_60[i-1]&lt;-sum(as.numeric(a[13:17,i]))
+}
+matriz&lt;-matrix(cbind(menor_de_20,entre_20_39_,entre_40_59_,mayor_60),nrow = 21)
+hombres&lt;-read.csv(&quot;hombres.csv&quot;,header=TRUE,sep=&quot;;&quot;)
+
+mujeres&lt;-read.csv(&quot;mujeres.csv&quot;,header=TRUE,sep=&quot;;&quot;)
+agelabels&lt;-c(&quot;0-4&quot;,&quot;5-9&quot;,&quot;10-14&quot;,&quot;15-19&quot;,&quot;20-24&quot;,&quot;25-29&quot;,&quot;30-34&quot;,
+             &quot;35-39&quot;,&quot;40-44&quot;,&quot;45-49&quot;,&quot;50-54&quot;,&quot;55-59&quot;,&quot;60-64&quot;,&quot;65-69&quot;,&quot;70-74&quot;,
+             &quot;75-79&quot;,&quot;&gt;80&quot;)
+anios&lt;-seq(1950,2050,5)
+
+par(mfrow=c(1,3))
+i&lt;-2
+pyramid(data.frame(100*hombres[,i]/sum(hombres[,i]), 100*mujeres[,i]/sum(mujeres[,i]),agelabels),main = substr(names(hombres)[i],2,5),Llab = &quot;Hombres&quot;,Rlab = &quot;Mujeres&quot;,Clab = &quot;Edad&quot;,Cgap = 0.4,Lcol = &quot;blue&quot;,Rcol=&quot;red&quot;,   Csize=1,Laxis=seq(0,18,len=3),Raxis=seq(0,18,len=3),GL=TRUE,cex.main=1.4)
+i&lt;-12
+pyramid(data.frame(100*hombres[,i]/sum(hombres[,i]), 100*mujeres[,i]/sum(mujeres[,i]),agelabels),main = substr(names(hombres)[i],2,5),Llab = &quot;Hombres&quot;,Rlab = &quot;Mujeres&quot;,Clab = &quot;Edad&quot;,Cgap = 0.4,Lcol = &quot;blue&quot;,Rcol=&quot;red&quot;,   Csize=1,Laxis=seq(0,18,len=3),Raxis=seq(0,18,len=3),GL=TRUE,cex.main=1.4)
+i&lt;-22
+pyramid(data.frame(100*hombres[,i]/sum(hombres[,i]), 100*mujeres[,i]/sum(mujeres[,i]),agelabels),main = substr(names(hombres)[i],2,5),Llab = &quot;Hombres&quot;,Rlab = &quot;Mujeres&quot;,Clab = &quot;Edad&quot;,Cgap = 0.4,Lcol = &quot;blue&quot;,Rcol=&quot;red&quot;,   Csize=1,Laxis=seq(0,18,len=3),Raxis=seq(0,18,len=3),GL=TRUE,cex.main=1.4)</code></pre>
+<p><img src="data_visuals_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 </div>
 
 
