@@ -33,3 +33,18 @@ The $\textbf{total loss}$ or $\textbf{claim amount}$ is  $$Z_t=\sum_{k=0}^{k_t}X
 Let $r_0$ the initial capital and $c>0$ be the premium rate (assumed constant)
 
 $$Y_t=r_o+ct-Z_t$$ is the risk process.
+
+## Heavy and Light tails in  Non life Insurance.
+
+In general insurance, is introduced the concept of heavy and light tailed distributions.  The basic interpretation of it is:
+
+- A distribution is light tailed, if is assigned smaller probabilities for larger  values of the variable $x$.
+
+- A distribution is heavy tailed, if is assigned larger probabilities to larger values of the variable $x$.
+
+$\textbf{Some examples:}$  For heavy tailed distributions we have for instance: 
+
+-The top of the $1\%$ of the world has the $40\%$ of the wealth.
+
+-The top of the $2\%$ of twitter users post the $60\%$ of tweets
+
