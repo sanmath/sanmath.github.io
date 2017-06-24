@@ -3,17 +3,22 @@ title: "Various about statistics and insurance"
 
 ---
 
-
+One of the most interesting theoretical about Non life Insurance for me was the idea of compound process. Using this formulation, we can obtain the usual expression to determine the total claim amount also called in some well known aplications as pure premium.
 
 ## The Compound Process
+
 Is a random sum where the upper summation index is a counting process.
 In general we have that:
+
 $$Z_t=\sum_{j=0}^{N_t}X_j$$
+
 It is called the total loss or the total claim amount.
 Is easy to prove that the moment generating function of $Z_t$ is given by $$M_{Z_t}(v)=M_{N_t}(log(M_X(v)))$$
 In addition to that, we know the next property of the moment generating function:
 $$E(X^k)=M^{(k)}(0)$$
-Using this fact, we can get the expected value for the total loss or total calim amount.
+
+Using this fact, we can get the expected value for the total loss or total claim amount.
+
 \begin{align*}
 E(Z_t)&=M'_{N_t}(log(M_X(0)))\times\frac{M'_X(0)}{M_X(0)}\\
 E(Z_t)&=E(N_t)E(X_1)
@@ -35,8 +40,9 @@ Let $r_0$ the initial capital and $c>0$ be the premium rate (assumed constant)
 $$Y_t=r_o+ct-Z_t$$ is the risk process.
 
 ## Heavy and Light tails in  Non life Insurance.
+One of the topics of interest for me is the mathematical ideas behind reinsurance.
 
-In general insurance, is introduced the concept of heavy and light tailed distributions.  The basic interpretation of it is:
+One of the topics of relevance, is the extreme value theory. We introduced the concept of heavy and light tailed distributions.  The basic interpretation of it is:
 
 - A distribution is light tailed, if is assigned smaller probabilities for larger  values of the variable $x$.
 

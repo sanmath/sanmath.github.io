@@ -9,11 +9,14 @@ navbar:
       href: data_visuals.html
     - text: "Statistics"
       href: various.html  
-right:
+  right:
     - text: "Contact me"
       icon: fa-envelope-o
       href: mailto:boriscout@hotmail.com
+    - icon: fa-linkedin fa-2x
+      href: https://ch.linkedin.com/in/boris-polanco-47962964
 output:
   html_document:
-    theme: cosmo
+    theme: spacelab
     highlight: textmate
+   
