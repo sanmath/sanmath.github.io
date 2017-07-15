@@ -25,6 +25,19 @@ E(Z_t)&=E(N_t)E(X_1)
 \end{align*}
 
 
+## The method of Inverse Transform.
+
+This method is useful to generate a random variable with distribution function $F$
+
+Is based on the next theorem:
+
+$\textbf{Theorem}\\$
+Let $F$ a distribution function and $U\sim Uniform(0,1)$, then:
+
+- $X=F^{-1}(U)\sim F$
+
+- $F(X)\sim Uniform(0,1)$
+
 ## The Risk Process
 
 We consider $X_1,X_2,...$ independent individual random losses or claim amounts, with distribution function $F$ 

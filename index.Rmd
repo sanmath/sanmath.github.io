@@ -24,20 +24,20 @@ a1<-rep(x = "Actuarial Mathematics",23)
 a2<-rep(x = "Statistics",12)
 a3<-rep(x = "R",20)
 a4<-rep(x="Stochastic Simulation",9)
-a5<-rep(x="Jazz",7)
-a6<-rep(x="Miles Davis",2)
+a5<-rep(x="Modeling",7)
+a6<-rep(x="Finance",2)
 a7<-rep(x="Linear Models",6)
 a8<-rep("Time Series",10)
 a9<-rep("Non Life Insurance",7)
 a12<-rep("Extreme Value Theory",8)
 a10<-rep("Probability",11)
-a11<-rep("Drums",5)
+a11<-rep("Risk Theory",5)
 
 N<-c(a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12)
 N1<-table(N)
 library(wordcloud)
 
-wordcloud(rownames(N1),freq = c(7,3,12,3,10,2,14,9,19,28,12,11) , min.freq =1, scale=c(4, .2),  random.color = FALSE)
+wordcloud(rownames(N1),freq = c(7,3,12,3,10,2,14,9,19,28,12,11) , min.freq =1, scale=c(4, .2),colors=c("navy","blue","black","navy","grey10","navy","darkorchid4") )
 
 
 ```

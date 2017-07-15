@@ -4,7 +4,7 @@
 
 <head>
 
-<meta charset="utf-8">
+<meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
@@ -226,6 +226,16 @@ E(Z_t)&amp;=M&#39;_{N_t}(log(M_X(0)))\times\frac{M&#39;_X(0)}{M_X(0)}\\
 E(Z_t)&amp;=E(N_t)E(X_1)
 \end{align*}\]</span>
 </div>
+<div id="the-method-of-inverse-transform." class="section level2">
+<h2>The method of Inverse Transform.</h2>
+<p>This method is useful to generate a random variable with distribution function <span class="math inline">\(F\)</span></p>
+<p>Is based on the next theorem:</p>
+<p><span class="math inline">\(\textbf{Theorem}\\\)</span> Let <span class="math inline">\(F\)</span> a distribution function and <span class="math inline">\(U\sim Uniform(0,1)\)</span>, then:</p>
+<ul>
+<li><p><span class="math inline">\(X=F^{-1}(U)\sim F\)</span></p></li>
+<li><p><span class="math inline">\(F(X)\sim Uniform(0,1)\)</span></p></li>
+</ul>
+</div>
 <div id="the-risk-process" class="section level2">
 <h2>The Risk Process</h2>
 <p>We consider <span class="math inline">\(X_1,X_2,...\)</span> independent individual random losses or claim amounts, with distribution function <span class="math inline">\(F\)</span></p>
@@ -271,7 +281,7 @@ $(document).ready(function () {
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>
