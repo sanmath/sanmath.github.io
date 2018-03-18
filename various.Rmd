@@ -67,3 +67,139 @@ $\textbf{Some examples:}$  For heavy tailed distributions we have for instance:
 
 -The top of the $2\%$ of twitter users post the $60\%$ of tweets
 
+## Some important things about Statisticcal Quality Control.
+ During my studies in Switzerland, I applied for an internship in a Swiss company. I started an internship in one of the most important companies in the field of Pharma and Biotech. I have been learning a lot about Quality control and some other appliactions of statistics. It has been really interesting. I have not enoguh time to post something in this blog, but I don't want to forget how to do that from R. I attach a brief summary of useful stuff during my internship. I hope someday to post in a dayly basis.
+ 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Kernel density estimation
+
+KDE is a non parametric way to estimato the probability density function of a random variable, introduced by Rosenblatt (1956).
+There are about 30 packages that performs density estimation problem in R
+
+## Overview of the problem
+
+Let n i.i.d data points $X_1,X_2,...,X_n$, we are interested in an estimate  $ = \hat{f}(s)$, of the true density $f(x)$.
+
+
+## Histogram 
+Is the oldest (1840's) and least sophisticated method of density estimation.
+Example: This data set contains the thickness and additional data for 84 metal plates.
+We have $84$ observations on the following $5$ variables.
+
+- day: a factor with the day (seven days)
+
+- shift: a factor with the shift (two shifts)
+
+- thickness: a numeric vector with the thickness (in)
+
+- ushift: a factor with the day-shift combination
+
+- flaws: an integer vector with the number of flaws on the surface of sampled plates
+
+
+```{r}
+library(SixSigma)
+data<-ss.data.thickness2
+
+#We present an histogram of the variable thickness 
+hist(data$thickness,main="Histogram thickness",col="blue",xlab="thickness")
+```
+
+## What is a Kernel?
+  A kernel is a special type of probability function with the following properties:
+
+- non-negative
+- real-valued
+- even
+- Its definite integral over its support set must equal one.
+
+![Different types of kernels.](kernels.png)
+
+Rosenblatt proposed putting smooth kernel weights in each of the observations.
+
+## Constructing a Kernel density estimate
+
+- 1 Choose a kernel; the common ones are  Gaussian, uniform, rectangular and triangular.
+ $$\hat{f}_h(x)=\frac{1}{n}\sum_{i=1}^nK_h(x-X_i)+\frac{1}{nh}\sum_{i=1}^nK(\frac{x-X_1}{h})$$
+ Where $K_h(x)=\frac{1}{h}K(\frac{x}{h})$ with $K$ a kernel and $h$ is the bandwith.
+ 
+ 
+## Kernel density Estimation in R
+From the library stats, we have the density function that computes kernel density estimates. The function has the next parameters:
+- x: The data from wich the estimate is to be computed.
+- bw: The smothing bandwith used.
+- kernel: A character string giving the smoothing kernel to be used, "gaussian","rectangular", "triangular",..etc.
+- n: The number of equally spaced points at which the density is to be estimated, in this case the bw will be equals to length of x divided to n-1
+- from,to: left and right points of the grid at wich the density is to be estimated.
+
+
+
+
+```{r}
+#First we simulate a set of 12 batches
+batches<-rgamma(n = 12,shape=7,rate=0.005)
+
+dens<-density(batches,from = 0,to=3000,n=10)
+plot(dens)
+dens
+##Grid
+(3000-0)/9
+dens$x
+plot(dens)
+```
+
+
+## The Johnson Transformation
+Most of the statistical analysis assumes normality. However in practice, it is not common get variables with non-normal distribution and one alternative is to transform the data, that is the application of a mathematical function to the original dataset.
+
+The $Z$ family of distributions is composed by three distributions named  Unbounded $SU$, Lognormal $SL$, and Bounded $SB$, which allow to transform into a normal distribution selecting one of the three of them. The transformations are:
+
+$$\begin{align*}
+Z&=\gamma+\eta sinh^{-1}\frac{x-\epsilon}{\lambda}\\
+\text{where }\eta,\lambda&>0,-\infty<\gamma<\infty, -\infty<\epsilon<\infty \text{ and } -\infty<x<\infty\\
+Z&=\gamma+\eta \ln^{-1}(x-\epsilon)\\
+\text{where }\eta&>0,-\infty<\gamma<\infty, -\infty<\epsilon<\infty \text{ and }\epsilon<x\\
+Z&=\gamma+\eta\ln(\frac{x-\epsilon}{\lambda+\epsilon-x})\\
+\text{where }\eta,\lambda&>0,-\infty<\gamma<\infty, -\infty<\epsilon<\infty \text{ and } -\epsilon<x<\epsilon+\lambda
+\end{align*}$$
+
+From the previous expressions we can perform the inverse transformation, using the results of estimated parameters, for instance:
+$$
+\begin{align*}
+\frac{Z-\gamma}{\eta}&=\sinh^{-1}(\frac{x-\epsilon}{\lambda})\\
+\lambda \sinh(\frac{Z-\gamma}{\eta})+\epsilon=x
+\end{align*}
+
+$$
+
+
+
+```{r}
+library(Johnson)
+set.seed(100)
+batches<-rexp(n = 12,rate=0.005)
+johnson_batches<-RE.Johnson(batches)
+johnson_batches$'function'
+## A SU transformation was used with the next parameters
+lambda<-johnson_batches$f.lambda
+gamma<-johnson_batches$f.gamma
+epsilon<-johnson_batches$f.epsilon
+eta<-johnson_batches$f.eta
+#Using the inverse formula we get the original values, the same argument used in the other families.
+#There is a nice explanation about  the discrimination of three families in The Johnson System: Selection and Parameter Estimation  by James F. Slifker & Samuel S. Shapiro .
+
+## after the inverse transformation the original data coincide
+epsilon+(lambda*sinh((johnson_batches$transformed-gamma)/(eta)))
+batches
+```
+
+## Empirical Distribution Function
+
+
+ 
+ 
+

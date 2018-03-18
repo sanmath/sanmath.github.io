@@ -17,7 +17,7 @@ plot(provincias,col=my.palette1,main="Ecuador")
 grid()
 ```
 
-## Swiss Temperature in the Summer
+## Swiss Temperature in the Autumn
 Is the summer in Switzerland, we can see the temperature in the most important cities. Finally , we can include the information and show it in a map.
 
 ```{r ,message=FALSE,warning=FALSE, error=FALSE}
