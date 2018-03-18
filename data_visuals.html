@@ -20,8 +20,8 @@
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -31,10 +31,12 @@
   }
 </style>
 <script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
 }
 </script>
 
@@ -225,69 +227,59 @@ provincias&lt;-readShapePoly(&quot;C:/Users/lenovo/Desktop/Msc.Statistics/Blog/s
 plot(provincias,col=my.palette1,main=&quot;Ecuador&quot;)
 grid()</code></pre>
 <p><img src="data_visuals_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-</div>
-<div id="swiss-temperature-in-the-autumn" class="section level2">
-<h2>Swiss Temperature in the Autumn</h2>
-<p>Is the summer in Switzerland, we can see the temperature in the most important cities. Finally , we can include the information and show it in a map.</p>
-<pre class="r"><code>library(weatherData)
-library(sp)
-library(maptools)
-library(RColorBrewer)
-
-crswgs84=CRS(&quot;+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs&quot;)
-cantones&lt;-readShapePoly(&quot;C:/Users/lenovo/Desktop/Msc.Statistics/Blog/sanmath.github.io/SHP/CHE_adm1.shp&quot;)
-
-mycols &lt;- colors()[round(runif(25,100,130))]
-mycols&lt;-heat.colors(25)
-mycols[c(6,8,25)]&lt;-&quot;tomato4&quot;
-
-plot(cantones,col=mycols,main=&quot;Switzerland Temperature in the Summer&quot;)
-grid()
-zh&lt;-getCurrentTemperature(&quot;LSZH&quot;)[,c(2)]
-br&lt;-getCurrentTemperature(&quot;LSZB&quot;)[,c(2)]
-gnv&lt;-getCurrentTemperature(&quot;LSGG&quot;)[,c(2)]
-
-text(coordinates(cantones)[c(6,8,25),],
-     labels = c(paste(&quot;Bern&quot;,br,&quot;°&quot;),
-                paste(&quot;Geneva&quot;,gnv,&quot;°&quot;),
-                paste(&quot;Zúrich&quot;,zh,&quot;°&quot;)),cex = 0.8)</code></pre>
-<p><img src="data_visuals_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-</div>
-<div id="population-pyramids" class="section level2">
-<h2>Population Pyramids</h2>
-<pre class="r"><code>library(foreign)
-library(readxl)
-library(pyramid)
-
-
-a&lt;-read_excel(path =&quot;proyecciones_poblacion.xlsx&quot;,sheet = 1 )
-menor_de_20&lt;-vector(mode =&quot;numeric&quot;,length=17)
-entre_20_39_&lt;-vector(mode =&quot;numeric&quot;,length=17)
-entre_40_59_&lt;-vector(mode =&quot;numeric&quot;,length=17)
-mayor_60&lt;-vector(mode =&quot;numeric&quot;,length=17)
-for(i in c(2:22)){
-  menor_de_20[i-1]&lt;-sum(as.numeric(a[1:4,i]))
-  entre_20_39_[i-1]&lt;-sum(as.numeric(a[5:8,i]))
-  entre_40_59_[i-1]&lt;-sum(as.numeric(a[9:12,i]))
-  mayor_60[i-1]&lt;-sum(as.numeric(a[13:17,i]))
-}
-matriz&lt;-matrix(cbind(menor_de_20,entre_20_39_,entre_40_59_,mayor_60),nrow = 21)
-hombres&lt;-read.csv(&quot;hombres.csv&quot;,header=TRUE,sep=&quot;;&quot;)
-
-mujeres&lt;-read.csv(&quot;mujeres.csv&quot;,header=TRUE,sep=&quot;;&quot;)
-agelabels&lt;-c(&quot;0-4&quot;,&quot;5-9&quot;,&quot;10-14&quot;,&quot;15-19&quot;,&quot;20-24&quot;,&quot;25-29&quot;,&quot;30-34&quot;,
-             &quot;35-39&quot;,&quot;40-44&quot;,&quot;45-49&quot;,&quot;50-54&quot;,&quot;55-59&quot;,&quot;60-64&quot;,&quot;65-69&quot;,&quot;70-74&quot;,
-             &quot;75-79&quot;,&quot;&gt;80&quot;)
-anios&lt;-seq(1950,2050,5)
-
-par(mfrow=c(1,3))
-i&lt;-2
-pyramid(data.frame(100*hombres[,i]/sum(hombres[,i]), 100*mujeres[,i]/sum(mujeres[,i]),agelabels),main = substr(names(hombres)[i],2,5),Llab = &quot;Hombres&quot;,Rlab = &quot;Mujeres&quot;,Clab = &quot;Edad&quot;,Cgap = 0.4,Lcol = &quot;blue&quot;,Rcol=&quot;red&quot;,   Csize=1,Laxis=seq(0,18,len=3),Raxis=seq(0,18,len=3),GL=TRUE,cex.main=1.4)
-i&lt;-12
-pyramid(data.frame(100*hombres[,i]/sum(hombres[,i]), 100*mujeres[,i]/sum(mujeres[,i]),agelabels),main = substr(names(hombres)[i],2,5),Llab = &quot;Hombres&quot;,Rlab = &quot;Mujeres&quot;,Clab = &quot;Edad&quot;,Cgap = 0.4,Lcol = &quot;blue&quot;,Rcol=&quot;red&quot;,   Csize=1,Laxis=seq(0,18,len=3),Raxis=seq(0,18,len=3),GL=TRUE,cex.main=1.4)
-i&lt;-22
-pyramid(data.frame(100*hombres[,i]/sum(hombres[,i]), 100*mujeres[,i]/sum(mujeres[,i]),agelabels),main = substr(names(hombres)[i],2,5),Llab = &quot;Hombres&quot;,Rlab = &quot;Mujeres&quot;,Clab = &quot;Edad&quot;,Cgap = 0.4,Lcol = &quot;blue&quot;,Rcol=&quot;red&quot;,   Csize=1,Laxis=seq(0,18,len=3),Raxis=seq(0,18,len=3),GL=TRUE,cex.main=1.4)</code></pre>
-<p><img src="data_visuals_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<!-- ## Swiss Temperature in the Autumn -->
+<!-- Is the summer in Switzerland, we can see the temperature in the most important cities. Finally , we can include the information and show it in a map. -->
+<!-- ```{r ,message=FALSE,warning=FALSE, error=FALSE} -->
+<!-- library(weatherData) -->
+<!-- library(sp) -->
+<!-- library(maptools) -->
+<!-- library(RColorBrewer) -->
+<!-- crswgs84=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs") -->
+<!-- cantones<-readShapePoly("C:/Users/lenovo/Desktop/Msc.Statistics/Blog/sanmath.github.io/SHP/CHE_adm1.shp") -->
+<!-- mycols <- colors()[round(runif(25,100,130))] -->
+<!-- mycols<-heat.colors(25) -->
+<!-- mycols[c(6,8,25)]<-"tomato4" -->
+<!-- plot(cantones,col=mycols,main="Switzerland Temperature in the Summer") -->
+<!-- grid() -->
+<!-- zh<-getCurrentTemperature("LSZH")[,c(2)] -->
+<!-- br<-getCurrentTemperature("LSZB")[,c(2)] -->
+<!-- gnv<-getCurrentTemperature("LSGG")[,c(2)] -->
+<!-- text(coordinates(cantones)[c(6,8,25),], -->
+<!--      labels = c(paste("Bern",br,"°"), -->
+<!--                 paste("Geneva",gnv,"°"), -->
+<!--                 paste("Zúrich",zh,"°")),cex = 0.8) -->
+<!-- ``` -->
+<!-- ## Population Pyramids -->
+<!-- ```{r ,message=FALSE,warning=FALSE, error=FALSE} -->
+<!-- library(foreign) -->
+<!-- library(readxl) -->
+<!-- library(pyramid) -->
+<!-- a<-read_excel(path ="proyecciones_poblacion.xlsx",sheet = 1 ) -->
+<!-- menor_de_20<-vector(mode ="numeric",length=17) -->
+<!-- entre_20_39_<-vector(mode ="numeric",length=17) -->
+<!-- entre_40_59_<-vector(mode ="numeric",length=17) -->
+<!-- mayor_60<-vector(mode ="numeric",length=17) -->
+<!-- for(i in c(2:22)){ -->
+<!--   menor_de_20[i-1]<-sum(as.numeric(a[1:4,i])) -->
+<!--   entre_20_39_[i-1]<-sum(as.numeric(a[5:8,i])) -->
+<!--   entre_40_59_[i-1]<-sum(as.numeric(a[9:12,i])) -->
+<!--   mayor_60[i-1]<-sum(as.numeric(a[13:17,i])) -->
+<!-- } -->
+<!-- matriz<-matrix(cbind(menor_de_20,entre_20_39_,entre_40_59_,mayor_60),nrow = 21) -->
+<!-- hombres<-read.csv("hombres.csv",header=TRUE,sep=";") -->
+<!-- mujeres<-read.csv("mujeres.csv",header=TRUE,sep=";") -->
+<!-- agelabels<-c("0-4","5-9","10-14","15-19","20-24","25-29","30-34", -->
+<!--              "35-39","40-44","45-49","50-54","55-59","60-64","65-69","70-74", -->
+<!--              "75-79",">80") -->
+<!-- anios<-seq(1950,2050,5) -->
+<!-- par(mfrow=c(1,3)) -->
+<!-- i<-2 -->
+<!-- pyramid(data.frame(100*hombres[,i]/sum(hombres[,i]), 100*mujeres[,i]/sum(mujeres[,i]),agelabels),main = substr(names(hombres)[i],2,5),Llab = "Hombres",Rlab = "Mujeres",Clab = "Edad",Cgap = 0.4,Lcol = "blue",Rcol="red",   Csize=1,Laxis=seq(0,18,len=3),Raxis=seq(0,18,len=3),GL=TRUE,cex.main=1.4) -->
+<!-- i<-12 -->
+<!-- pyramid(data.frame(100*hombres[,i]/sum(hombres[,i]), 100*mujeres[,i]/sum(mujeres[,i]),agelabels),main = substr(names(hombres)[i],2,5),Llab = "Hombres",Rlab = "Mujeres",Clab = "Edad",Cgap = 0.4,Lcol = "blue",Rcol="red",   Csize=1,Laxis=seq(0,18,len=3),Raxis=seq(0,18,len=3),GL=TRUE,cex.main=1.4) -->
+<!-- i<-22 -->
+<!-- pyramid(data.frame(100*hombres[,i]/sum(hombres[,i]), 100*mujeres[,i]/sum(mujeres[,i]),agelabels),main = substr(names(hombres)[i],2,5),Llab = "Hombres",Rlab = "Mujeres",Clab = "Edad",Cgap = 0.4,Lcol = "blue",Rcol="red",   Csize=1,Laxis=seq(0,18,len=3),Raxis=seq(0,18,len=3),GL=TRUE,cex.main=1.4) -->
+<!-- ```` -->
 </div>
 
 

@@ -20,8 +20,8 @@
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -31,10 +31,12 @@
   }
 </style>
 <script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
 }
 </script>
 
@@ -256,6 +258,127 @@ E(Z_t)&amp;=E(N_t)E(X_1)
 <p><span class="math inline">\(\textbf{Some examples:}\)</span> For heavy tailed distributions we have for instance:</p>
 <p>-The top of the <span class="math inline">\(1\%\)</span> of the world has the <span class="math inline">\(40\%\)</span> of the wealth.</p>
 <p>-The top of the <span class="math inline">\(2\%\)</span> of twitter users post the <span class="math inline">\(60\%\)</span> of tweets</p>
+</div>
+<div id="some-important-things-about-statisticcal-quality-control." class="section level2">
+<h2>Some important things about Statisticcal Quality Control.</h2>
+<p>During my studies in Switzerland, I applied for an internship in a Swiss company. I started an internship in one of the most important companies in the field of Pharma and Biotech. I have been learning a lot about Quality control and some other appliactions of statistics. It has been really interesting. I have not enoguh time to post something in this blog, but I don’t want to forget how to do that from R. I attach a brief summary of useful stuff during my internship. I hope someday to post in a dayly basis.</p>
+</div>
+<div id="kernel-density-estimation" class="section level2">
+<h2>Kernel density estimation</h2>
+<p>KDE is a non parametric way to estimato the probability density function of a random variable, introduced by Rosenblatt (1956). There are about 30 packages that performs density estimation problem in R</p>
+</div>
+<div id="overview-of-the-problem" class="section level2">
+<h2>Overview of the problem</h2>
+<p>Let n i.i.d data points <span class="math inline">\(X_1,X_2,...,X_n\)</span>, we are interested in an estimate $ = (s)$, of the true density <span class="math inline">\(f(x)\)</span>.</p>
+</div>
+<div id="histogram" class="section level2">
+<h2>Histogram</h2>
+<p>Is the oldest (1840’s) and least sophisticated method of density estimation. Example: This data set contains the thickness and additional data for 84 metal plates. We have <span class="math inline">\(84\)</span> observations on the following <span class="math inline">\(5\)</span> variables.</p>
+<ul>
+<li><p>day: a factor with the day (seven days)</p></li>
+<li><p>shift: a factor with the shift (two shifts)</p></li>
+<li><p>thickness: a numeric vector with the thickness (in)</p></li>
+<li><p>ushift: a factor with the day-shift combination</p></li>
+<li><p>flaws: an integer vector with the number of flaws on the surface of sampled plates</p></li>
+</ul>
+<pre class="r"><code>library(SixSigma)
+data&lt;-ss.data.thickness2
+
+#We present an histogram of the variable thickness 
+hist(data$thickness,main=&quot;Histogram thickness&quot;,col=&quot;blue&quot;,xlab=&quot;thickness&quot;)</code></pre>
+<p><img src="various_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+</div>
+<div id="what-is-a-kernel" class="section level2">
+<h2>What is a Kernel?</h2>
+<p>A kernel is a special type of probability function with the following properties:</p>
+<ul>
+<li>non-negative</li>
+<li>real-valued</li>
+<li>even</li>
+<li>Its definite integral over its support set must equal one.</li>
+</ul>
+<p>Rosenblatt proposed putting smooth kernel weights in each of the observations.</p>
+</div>
+<div id="constructing-a-kernel-density-estimate" class="section level2">
+<h2>Constructing a Kernel density estimate</h2>
+<ul>
+<li>1 Choose a kernel; the common ones are Gaussian, uniform, rectangular and triangular. <span class="math display">\[\hat{f}_h(x)=\frac{1}{n}\sum_{i=1}^nK_h(x-X_i)+\frac{1}{nh}\sum_{i=1}^nK(\frac{x-X_1}{h})\]</span> Where <span class="math inline">\(K_h(x)=\frac{1}{h}K(\frac{x}{h})\)</span> with <span class="math inline">\(K\)</span> a kernel and <span class="math inline">\(h\)</span> is the bandwith.</li>
+</ul>
+</div>
+<div id="kernel-density-estimation-in-r" class="section level2">
+<h2>Kernel density Estimation in R</h2>
+<p>From the library stats, we have the density function that computes kernel density estimates. The function has the next parameters: - x: The data from wich the estimate is to be computed. - bw: The smothing bandwith used. - kernel: A character string giving the smoothing kernel to be used, “gaussian”,“rectangular”, “triangular”,..etc. - n: The number of equally spaced points at which the density is to be estimated, in this case the bw will be equals to length of x divided to n-1 - from,to: left and right points of the grid at wich the density is to be estimated.</p>
+<pre class="r"><code>#First we simulate a set of 12 batches
+batches&lt;-rgamma(n = 12,shape=7,rate=0.005)
+
+dens&lt;-density(batches,from = 0,to=3000,n=10)
+plot(dens)
+dens</code></pre>
+<pre><code>## 
+## Call:
+##  density.default(x = batches, n = 10, from = 0, to = 3000)
+## 
+## Data: batches (12 obs.); Bandwidth &#39;bw&#39; = 220.6
+## 
+##        x              y            
+##  Min.   :   0   Min.   :1.220e-08  
+##  1st Qu.: 750   1st Qu.:2.272e-05  
+##  Median :1500   Median :1.916e-04  
+##  Mean   :1500   Mean   :3.003e-04  
+##  3rd Qu.:2250   3rd Qu.:5.435e-04  
+##  Max.   :3000   Max.   :7.964e-04</code></pre>
+<pre class="r"><code>##Grid
+(3000-0)/9</code></pre>
+<pre><code>## [1] 333.3333</code></pre>
+<pre class="r"><code>dens$x</code></pre>
+<pre><code>##  [1]    0.0000  333.3333  666.6667 1000.0000 1333.3333 1666.6667 2000.0000
+##  [8] 2333.3333 2666.6667 3000.0000</code></pre>
+<pre class="r"><code>plot(dens)</code></pre>
+<p><img src="various_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+</div>
+<div id="the-johnson-transformation" class="section level2">
+<h2>The Johnson Transformation</h2>
+<p>Most of the statistical analysis assumes normality. However in practice, it is not common get variables with non-normal distribution and one alternative is to transform the data, that is the application of a mathematical function to the original dataset.</p>
+<p>The <span class="math inline">\(Z\)</span> family of distributions is composed by three distributions named Unbounded <span class="math inline">\(SU\)</span>, Lognormal <span class="math inline">\(SL\)</span>, and Bounded <span class="math inline">\(SB\)</span>, which allow to transform into a normal distribution selecting one of the three of them. The transformations are:</p>
+<p><span class="math display">\[\begin{align*}
+Z&amp;=\gamma+\eta sinh^{-1}\frac{x-\epsilon}{\lambda}\\
+\text{where }\eta,\lambda&amp;&gt;0,-\infty&lt;\gamma&lt;\infty, -\infty&lt;\epsilon&lt;\infty \text{ and } -\infty&lt;x&lt;\infty\\
+Z&amp;=\gamma+\eta \ln^{-1}(x-\epsilon)\\
+\text{where }\eta&amp;&gt;0,-\infty&lt;\gamma&lt;\infty, -\infty&lt;\epsilon&lt;\infty \text{ and }\epsilon&lt;x\\
+Z&amp;=\gamma+\eta\ln(\frac{x-\epsilon}{\lambda+\epsilon-x})\\
+\text{where }\eta,\lambda&amp;&gt;0,-\infty&lt;\gamma&lt;\infty, -\infty&lt;\epsilon&lt;\infty \text{ and } -\epsilon&lt;x&lt;\epsilon+\lambda
+\end{align*}\]</span></p>
+From the previous expressions we can perform the inverse transformation, using the results of estimated parameters, for instance: $$
+<span class="math display">\[\begin{align*}
+\frac{Z-\gamma}{\eta}&amp;=\sinh^{-1}(\frac{x-\epsilon}{\lambda})\\
+\lambda \sinh(\frac{Z-\gamma}{\eta})+\epsilon=x
+\end{align*}\]</span>
+<p>$$</p>
+<pre class="r"><code>library(Johnson)
+set.seed(100)
+batches&lt;-rexp(n = 12,rate=0.005)
+johnson_batches&lt;-RE.Johnson(batches)
+johnson_batches$&#39;function&#39;</code></pre>
+<pre><code>## [1] &quot;SB&quot;</code></pre>
+<pre class="r"><code>## A SU transformation was used with the next parameters
+lambda&lt;-johnson_batches$f.lambda
+gamma&lt;-johnson_batches$f.gamma
+epsilon&lt;-johnson_batches$f.epsilon
+eta&lt;-johnson_batches$f.eta
+#Using the inverse formula we get the original values, the same argument used in the other families.
+#There is a nice explanation about  the discrimination of three families in The Johnson System: Selection and Parameter Estimation  by James F. Slifker &amp; Samuel S. Shapiro .
+
+## after the inverse transformation the original data coincide
+epsilon+(lambda*sinh((johnson_batches$transformed-gamma)/(eta)))</code></pre>
+<pre><code>##  [1]  -3464.06330  -4652.51609 -36517.84218    -12.57262  -5514.49065
+##  [6]  -2533.80734 -41133.93270  -1351.56135 -14875.09136 -19335.23912
+## [11]  -6705.76078 -10818.12165</code></pre>
+<pre class="r"><code>batches</code></pre>
+<pre><code>##  [1] 184.84232 144.76744  20.92897 619.47247 124.96105 234.88587  18.62344
+##  [8] 349.67815  49.99859  38.86529 105.02043  67.60868</code></pre>
+</div>
+<div id="empirical-distribution-function" class="section level2">
+<h2>Empirical Distribution Function</h2>
 </div>
 
 
