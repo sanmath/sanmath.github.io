@@ -117,7 +117,6 @@ hist(data$thickness,main="Histogram thickness",col="blue",xlab="thickness")
 - even
 - Its definite integral over its support set must equal one.
 
-![Different types of kernels.](kernels.png)
 
 Rosenblatt proposed putting smooth kernel weights in each of the observations.
 
