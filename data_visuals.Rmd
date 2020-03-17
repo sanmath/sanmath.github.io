@@ -5,8 +5,9 @@ title: "Data Visualizations"
 ![](C:/Users/lenovo/Desktop/Msc.Statistics/Blog/sanmath.github.io/foto1.jpg)
 
 ## Coronavirus Data 
+
 \today
-```{r , message=FALSE,error=FALSE,warning=FALSE}
+```{r , message=FALSE,error=FALSE,warning=FALSE,echo=FALSE}
 library(kableExtra)
 library(XML)
 library(DT)
