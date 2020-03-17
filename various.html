@@ -22,7 +22,9 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
+<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
+<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -90,6 +92,9 @@ img {
 }
 .tabbed-pane {
   padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
 }
 button.code-folding-btn:focus {
   outline: none;
@@ -281,8 +286,14 @@ E(Z_t)&amp;=E(N_t)E(X_1)
 <li><p>ushift: a factor with the day-shift combination</p></li>
 <li><p>flaws: an integer vector with the number of flaws on the surface of sampled plates</p></li>
 </ul>
-<pre class="r"><code>library(SixSigma)
-data&lt;-ss.data.thickness2
+<pre class="r"><code>library(SixSigma)</code></pre>
+<pre><code>## Warning: package &#39;SixSigma&#39; was built under R version 3.5.3</code></pre>
+<pre><code>## Warning: As of rlang 0.4.0, dplyr must be at least version 0.8.0.
+## x dplyr 0.7.6 is too old for rlang 0.4.2.
+## i Please update dplyr to the latest version.
+## i Updating packages on Windows requires precautions:
+##   &lt;https://github.com/jennybc/what-they-forgot/issues/62&gt;</code></pre>
+<pre class="r"><code>data&lt;-ss.data.thickness2
 
 #We present an histogram of the variable thickness 
 hist(data$thickness,main=&quot;Histogram thickness&quot;,col=&quot;blue&quot;,xlab=&quot;thickness&quot;)</code></pre>
