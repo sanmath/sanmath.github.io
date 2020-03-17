@@ -1,4 +1,5 @@
 name: "Boris Polanco"
+organization: "D&P Drug Product Analysis Services"
 output_dir: "."
 navbar:
   title: "My Website"
@@ -17,6 +18,6 @@ navbar:
       href: https://ch.linkedin.com/in/boris-polanco-47962964
 output:
   html_document:
-    theme: spacelab
+    theme: cosmo
     highlight: textmate
    

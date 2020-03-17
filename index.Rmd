@@ -5,7 +5,7 @@ title: "My Homepage"
 
 
 ## Boris Polanco
-![](C:/Users/lenovo/Desktop/Msc.Statistics/Blog/sanmath.github.io/foto1.jpg)
+![](C:/Users/lenovo/Desktop/Msc.Statistics/Blog/sanmath.github.io/unnamed.jpg)
 \\
 
 Hi, I am Boris Polanco, I am from Ecuador. I have studied applied mathematics during my bachelor studies at National Polytechnic School in Ecuador and I got a master degree in statistics at the University of Bern in Switzerland.\\

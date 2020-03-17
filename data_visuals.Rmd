@@ -2,6 +2,12 @@
 title: "Data Visualizations"
 
 ---
+![](C:/Users/lenovo/Desktop/Msc.Statistics/Blog/sanmath.github.io/foto1.jpg)
+
+## Some about coronavirus
+
+The {nCov2019} package gives you access to epidemiological data on the coronavirus outbreak. The package gives real-time statistics and includes historical data. The vignette explains the main functions and possibilities of the package.\\
+Furthermore, the authors of the package also developed a website with interactive plots and time-series forecasts, which could be useful in informing the public and studying how the virus spread in populous countries.
 
 
 ## Plot of my country
