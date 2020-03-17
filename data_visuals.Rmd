@@ -4,15 +4,42 @@ title: "Data Visualizations"
 ---
 ![](C:/Users/lenovo/Desktop/Msc.Statistics/Blog/sanmath.github.io/foto1.jpg)
 
-## Some about coronavirus
+## Coronavirus Data 
+\today
+```{r , message=FALSE,error=FALSE,warning=FALSE}
+library(kableExtra)
+library(XML)
+library(DT)
+url <- "http://www.worldometers.info/coronavirus/#countries"
+library(httr)
+tabs <- GET(url)
+tabs <- readHTMLTable(rawToChar(tabs$content), stringsAsFactors = F)
+data<-tabs$main_table_countries
+data$TotalCases<-gsub(pattern = ",",replacement = "",x = data$TotalCases)
+tabla<-data.frame(Country=data$`Country,Other`,Cases=as.numeric(data$TotalCases))
+datatable(tabla,extensions = 'Buttons', options = list(dom = 'Bfrtip', buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
+```
 
-The {nCov2019} package gives you access to epidemiological data on the coronavirus outbreak. The package gives real-time statistics and includes historical data. The vignette explains the main functions and possibilities of the package.\\
-Furthermore, the authors of the package also developed a website with interactive plots and time-series forecasts, which could be useful in informing the public and studying how the virus spread in populous countries.
 
+## Kernel density estimator in R
+
+ One of the most easy plots in R is the kernel density estimator plot.
+ kernel density estimation (KDE) is a non-parametric way to estimate the probability density function of a random variable. 
+ In order to do that we can do the next steps:
+ 
+ * We consider the data set, for instance standard normal distributed data  1000 data poitns.
+ * We use the command density() inside the command plot.
+ 
+```{r , message=FALSE,error=FALSE,warning=FALSE}
+data<-rnorm(100,mean=0,sd=1)
+hist(data,main = "Histogram",probability = TRUE,xlab="x-axis",ylab="y-axis",col="blue",ylim = c(0,0.8))
+lines(density(data),col="red",lwd=2)
+```
+Reading some of the documentation of density(), we will find that we can use different "kernels".
 
 ## Plot of my country
 
-Some time ago, I was interested in maps using R. I found some information with some libraries that can be used. The idea is to understand that we need to plot coordinates in a plot. In this small example I plot the map of Ecuador
+Sometime ago, I was interested in maps using R. I found some information with some libraries that can be used. The idea is to understand that we need to plot coordinates in a plot. In this small example I plot the map of Ecuador.
 
 ```{r , message=FALSE,error=FALSE,warning=FALSE}
 library(maptools)
@@ -20,6 +47,7 @@ library(RColorBrewer)
 my.palette1 <- brewer.pal(n = 12, name = "Set3")
 crswgs84=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs")
 provincias<-readShapePoly("C:/Users/lenovo/Desktop/Msc.Statistics/Blog/sanmath.github.io/SHP/nxprovincias.shp")
+provincias$DPA_DESPRO
 plot(provincias,col=my.palette1,main="Ecuador")
 grid()
 ```
