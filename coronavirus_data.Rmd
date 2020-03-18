@@ -2,11 +2,14 @@
 title: "Coronavirus Data Worldwide"
 
 ---
-![](C:/Users/lenovo/Desktop/Msc.Statistics/Blog/sanmath.github.io/foto1.jpg)
+<center>
 
+
+![](C:/Users/lenovo/Desktop/Msc.Statistics/Blog/sanmath.github.io/coronaplot.jpg){width=300px}
+</center>
 ## Coronavirus Data 
 
-\today
+
 ```{r , message=FALSE,error=FALSE,warning=FALSE,echo=FALSE}
 library(kableExtra)
 library(XML)
@@ -18,7 +21,7 @@ tabs <- readHTMLTable(rawToChar(tabs$content), stringsAsFactors = F)
 data<-tabs$main_table_countries
 data$TotalCases<-gsub(pattern = ",",replacement = "",x = data$TotalCases)
 tabla<-data.frame(Country=data$`Country,Other`,Cases=as.numeric(data$TotalCases))
-datatable(tabla,extensions = 'Buttons', options = list(dom = 'Bfrtip', buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
+datatable(tabla,extensions = 'Buttons', options = list(dom = 'Bfrtip', buttons = c('copy', 'csv', 'excel', 'pdf', 'print'),pageLength = 30))
 ```
 
 
