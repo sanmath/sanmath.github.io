@@ -2,24 +2,10 @@
 title: "Data Visualizations"
 
 ---
+<center>
 ![](C:/Users/lenovo/Desktop/Msc.Statistics/Blog/sanmath.github.io/foto1.jpg)
 
-## Coronavirus Data 
-
-\today
-```{r , message=FALSE,error=FALSE,warning=FALSE,echo=FALSE}
-library(kableExtra)
-library(XML)
-library(DT)
-url <- "http://www.worldometers.info/coronavirus/#countries"
-library(httr)
-tabs <- GET(url)
-tabs <- readHTMLTable(rawToChar(tabs$content), stringsAsFactors = F)
-data<-tabs$main_table_countries
-data$TotalCases<-gsub(pattern = ",",replacement = "",x = data$TotalCases)
-tabla<-data.frame(Country=data$`Country,Other`,Cases=as.numeric(data$TotalCases))
-datatable(tabla,extensions = 'Buttons', options = list(dom = 'Bfrtip', buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
-```
+</center>
 
 
 ## Kernel density estimator in R

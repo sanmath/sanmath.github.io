@@ -11,7 +11,7 @@ title: "Coronavirus Data Worldwide"
 
 
 ```{r , message=FALSE,error=FALSE,warning=FALSE,echo=FALSE}
-library(kableExtra)
+library(kableExtra)#d91f3d59efdf6286f5587b859423b65b01c9c48a
 library(XML)
 library(DT)
 url <- "http://www.worldometers.info/coronavirus/#countries"
