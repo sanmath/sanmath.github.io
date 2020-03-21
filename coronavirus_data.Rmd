@@ -18,7 +18,7 @@ url <- "http://www.worldometers.info/coronavirus/#countries"
 library(httr)
 tabs <- GET(url)
 tabs <- readHTMLTable(rawToChar(tabs$content), stringsAsFactors = F)
-data<-tabs$main_table_countries
+data<-tabs$main_table_countries_yesterday
 data$TotalCases<-gsub(pattern = ",",replacement = "",x = data$TotalCases)
 tabla<-data.frame(Country=data$`Country,Other`,Cases=as.numeric(data$TotalCases))
 datatable(tabla,extensions = 'Buttons', options = list(dom = 'Bfrtip', buttons = c('copy', 'csv', 'excel', 'pdf', 'print'),pageLength = 30))
