@@ -8,9 +8,9 @@ title: "Coronavirus Data Worldwide"
 ![](C:/Users/lenovo/Desktop/Msc.Statistics/Blog/sanmath.github.io/coronaplot.jpg){width=300px}
 </center>
 ## Coronavirus Data 
+I have used the next code to creaate the table with coronavirus data worldwide.
 
-
-```{r , message=FALSE,error=FALSE,warning=FALSE,echo=FALSE}
+```{r , message=FALSE,error=FALSE,warning=FALSE,echo=TRUE}
 library(kableExtra)#d91f3d59efdf6286f5587b859423b65b01c9c48a
 library(XML)
 library(DT)
