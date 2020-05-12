@@ -1,0 +1,20 @@
+---
+title: "publications"
+author: "Boris Polanco"
+date: "12 de mayo de 2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Master Thesis
+Here you can find a copy of my master thesis. I worked on the computation of Value at Ruin and Tail Value at Ruin. Both risk measures were commputed considering the Crámer Lundberg Risk Process con Heavy Tailed Claim amounts and Light Tailed claim amounts. IN order to compute such measures, it was necessary to use stochastic simulation techniques.
+<a href="Master_thesis.pdf">Master Thesis</a>
+
+
+```{r cars}
+summary(cars)
+```
+

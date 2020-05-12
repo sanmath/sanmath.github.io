@@ -11,7 +11,7 @@ title: "My Homepage"
 \vspace{1cm}
 Hi, I am Boris Polanco, I am from Ecuador. I have studied applied mathematics during my bachelor studies at National Polytechnic School in Ecuador and I got a master degree in statistics at the University of Bern in Switzerland.
 
-In have created this website to publish some topics about my professional interest as statistics, actuarial mathematics, R programming, data visualization, also I want to share some of the knowledge that I have been adquiring during my short experience, as a student and in my job. If you have questions about my work, or everything related to me, do not hesitate in contact me.
+In have created this website to publish some topics about my professional interest as statistics, applied mathematics, actuarial science, R programming, data visualization, also I want to share some of the knowledge that I have been adquiring during my short experience, as a student and in my job. If you have questions about my work, or everything related to me, do not hesitate in contact me.
 
 
 I have added this link where you can find my CV as a pdf document.
@@ -26,7 +26,7 @@ a1<-rep(x = "Actuarial Mathematics",23)
 a2<-rep(x = "Statistics",12)
 a3<-rep(x = "R",20)
 a4<-rep(x="Stochastic Simulation",9)
-a5<-rep(x="Modeling",7)
+a5<-rep(x="Machine Learning",7)
 a6<-rep(x="Finance",2)
 a7<-rep(x="Linear Models",6)
 a8<-rep("Time Series",10)
