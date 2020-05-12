@@ -6,7 +6,7 @@ navbar:
     - text: "Home"
       href: index.html
     - text: "Publications"
-      href: public.html
+      href: publications.html
     - text: "Coronavirus Data Worldwide"
       href: coronavirus_data.html
     - text: "Data Visualization"

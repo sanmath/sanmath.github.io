@@ -9,12 +9,18 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+## Bachelor Thesis
+This research aims to study the phenomenon of late life mortality deceleration in ecuadorian population. This phenomenon is very important in the acturial field, because nowadays our country is going through a demographic transition process. As a result of this process the late life population will increase in the next $30$ years.\\
+The results are obtained by fitting several mortality data to certain typical functions in survival analysis using the least squares method. After some statistical  validation process, the best fitted curve is selected using certain statistical criteria. Then,  two alternatives are examinated in order to determine the age at which the mortality deceleration process starts.
+Finally, a comparison between the obtained results is performed.\\
+The data used in this research corresponds to population projections obtained  from Instituto Nacional de Estadistica y Censos (INEC).\\
+All the numerical calculations are derived by using the programming language and environment R, which is a free software project for statistical, graphic and nummerical analysis.
+https://bibdigital.epn.edu.ec/bitstream/15000/10515/1/CD-6223.pdf
+
 ## Master Thesis
+
 Here you can find a copy of my master thesis. I worked on the computation of Value at Ruin and Tail Value at Ruin. Both risk measures were commputed considering the Crámer Lundberg Risk Process con Heavy Tailed Claim amounts and Light Tailed claim amounts. IN order to compute such measures, it was necessary to use stochastic simulation techniques.
+
+This work was done under the supervision of Dr. Riccardo Gatto.
 <a href="Master_thesis.pdf">Master Thesis</a>
-
-
-```{r cars}
-summary(cars)
-```
 
