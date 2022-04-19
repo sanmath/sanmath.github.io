@@ -29,14 +29,14 @@ Reading some of the documentation of density(), we will find that we can use dif
 Sometime ago, I was interested in maps using R. I found some information with some libraries that can be used. The idea is to understand that we need to plot coordinates in a plot. In this small example I plot the map of Ecuador.
 
 ```{r , message=FALSE,error=FALSE,warning=FALSE}
-library(maptools)
-library(RColorBrewer)
-my.palette1 <- brewer.pal(n = 12, name = "Set3")
-crswgs84=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs")
-provincias<-readShapePoly("C:/Users/lenovo/Desktop/Msc.Statistics/Blog/sanmath.github.io/SHP/nxprovincias.shp")
-provincias$DPA_DESPRO
-plot(provincias,col=my.palette1,main="Ecuador")
-grid()
+#library(maptools)
+#library(RColorBrewer)
+#my.palette1 <- brewer.pal(n = 12, name = "Set3")
+#crswgs84=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs")
+#provincias<-readShapePoly("C:/Users/lenovo/Desktop/Msc.Statistics/Blog/sanmath.github.io/SHP/nxprovincias.shp")
+#provincias$DPA_DESPRO
+#plot(provincias,col=my.palette1,main="Ecuador")
+#grid()
 ```
 
 <!-- ## Swiss Temperature in the Autumn -->

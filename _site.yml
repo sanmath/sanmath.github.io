@@ -7,10 +7,6 @@ navbar:
       href: index.html
     - text: "Publications"
       href: publications.html
-    - text: "Coronavirus Data Worldwide"
-      href: coronavirus_data.html
-    - text: "Data Visualization"
-      href: data_visuals.html
     - text: "Statistics"
       href: various.html  
   right:
