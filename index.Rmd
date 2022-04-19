@@ -33,9 +33,9 @@ a7<-rep(x="Linear Models",6)
 a8<-rep("Time Series",10)
 a9<-rep("Non Life Insurance",7)
 a12<-rep("Extreme Value Theory",8)
-a10<-rep("Probability",11)
+a10<-rep("Health Economics",11)
 a11<-rep("Risk Theory",5)
-a13<-rep(x = "Health Economics",13)
+
 
 N<-c(a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12)
 N1<-table(N)
