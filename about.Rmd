@@ -5,13 +5,16 @@ title: "Boris Polanco"
 ============
 
 -------------------     ----------------------------
-Waldmannstrasse 15                borispolancojacome@students.unibe.com
-Bern                        @twitter_handle
-MyCountry                           1800 my-phone-nr
+Gerliswilstrasse 10                boris.polanco@paraplegie.ch
+Lucerne                        @twitter_handle
+Switzerland                           1800 my-phone-nr
 -------------------     ----------------------------
 
 Education
 ---------
+
+2021-Currently
+:   **PhD, Health Sciences**; University of Lucerne 
 
 2016-2018
 :   **Msc, Statistics**; University of Bern 
